@@ -98,79 +98,19 @@ lightboxOverlay.addEventListener('click', onOverlayClose);
 
 
 function onGalleryClick(event) {
-  if (e.target.nodeName !== 'IMG') {
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
     return;
   }
-  if (e.target.nodeName === "IMG") {
-    event.preventDefault();
-    lightboxOverlay.classList.add('is-open');
+  lightboxOverlay.classList.add('is-open');
     imageOrigin.setAttribute('src', event.target.dataset.source);
     imageOrigin.setAttribute('alt', event.target.alt);
-  }
 }
 
 function onCloseModal(event) {
   if (event.target===event.currentTarget){
-  lightboxOverlay.classList.remove('is-open');
- imageOrigin.removeAttribute('src');
-  imageOrigin.removeAttribute('alt');
-}
-}
-
-function onOverlayClose(event) {
-  if (event.currentTarget === eventTarget) {
-    onCloseModal();
+    lightboxOverlay.classList.remove('is-open');
+    imageOrigin.removeAttribute('src');
+    imageOrigin.removeAttribute('alt');
   }
 }
-
-// galleryEl.addEventListener('click', onImageClick);
-// lightboxCloseBtnEl.addEventListener('click', onCloseModal);
-// lightboxOverlayEl.addEventListener('click', onOverlayClose);
-
-// function onImageClick(e) {
-//   const isSmallImage = e.target.classList.contains('gallery__image');
-
-//   if (!isSmallImage) {
-//     return;
-//   }
-
-//   const bigImageSrc = e.target.dataset.source;
-//   const bigImageAlt = e.target.alt;
-
-//   lightboxBigImageEl.setAttribute('src', bigImageSrc);
-//   lightboxBigImageEl.setAttribute('alt', bigImageAlt);
-
-//   onOpenModal(e);
-// }
-
-// function onOpenModal(e) {
-//   e.preventDefault();
-//   lightboxEl.classList.add('is-open');
-
-//   window.addEventListener('keydown', onEscapeKeypress);
-// }
-
-// function onCloseModal() {
-//   lightboxEl.classList.remove('is-open');
-
-//   lightboxBigImageEl.removeAttribute('src');
-//   lightboxBigImageEl.removeAttribute('alt');
-// }
-
-// function onEscapeKeypress(e) {
-//   const ESC_KEY_CODE = 'Escape';
-
-//   if (e.code !== ESC_KEY_CODE) {
-//     return;
-//   }
-
-//   onCloseModal();
-// }
-
-// function onOverlayClose(e) {
-//   if (e.target !== e.currentTarget) {
-//     return;
-//   }
-
-//   onCloseModal();
-// }
